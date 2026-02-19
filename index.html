@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Hetsi 💗</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Georgia', serif;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff6f9;
+  background: linear-gradient(-45deg,#2b0f1f,#3e1b2e,#5c2747,#2b0f1f);
+  background-size: 400% 400%;
+  animation: gradientShift 18s ease infinite;
+}
+
+@keyframes gradientShift{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Floating HETSI */
+.floating{
+  position:absolute;
+  color:rgba(255,182,201,0.08);
+  font-weight:bold;
+  animation: float 25s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(110vh);}
+  to{transform:translateY(-120vh);}
+}
+
+/* Card */
+.card{
+  width:92%;
+  max-width:460px;
+  min-height:450px;
+  backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.08);
+  border-radius:25px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(255,182,201,0.15);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+/* Buttons */
+button{
+  margin-top:22px;
+  padding:8px 22px;
+  border:none;
+  border-radius:25px;
+  background:rgba(255,182,201,0.2);
+  color:#fff;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+button:hover{
+  background:rgba(255,182,201,0.4);
+}
+
+/* Big Heart */
+.big-heart{
+  font-size:80px;
+  color:#fff;
+  animation:pulse 2s infinite;
+  cursor:pointer;
+  text-shadow:0 0 20px #ffb6c9;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+  100%{transform:scale(1);}
+}
+
+/* Hearts layout */
+.heart-wrapper{
+  display:none;
+  width:100%;
+  height:300px;
+  position:relative;
+}
+
+.heart{
+  position:absolute;
+  width:90px;
+  height:90px;
+  background:#ffb6c9;
+  transform: rotate(-45deg);
+  cursor:pointer;
+  transition:0.6s;
+  box-shadow:0 0 25px rgba(255,182,201,0.6);
+}
+
+.heart:before,
+.heart:after{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  background:#ffb6c9;
+  border-radius:50%;
+}
+
+.heart:before{
+  top:-45px;
+  left:0;
+}
+
+.heart:after{
+  left:45px;
+  top:0;
+}
+
+.heart span{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%) rotate(45deg);
+  font-size:28px;
+  font-weight:bold;
+  color:#fff;
+}
+
+/* Position hearts */
+.h1{ top:0; left:50%; transform:translateX(-50%) rotate(-45deg); }
+.h2{ top:110px; left:0; }
+.h3{ top:110px; right:0; }
+.h4{ bottom:0; left:20%; }
+.h5{ bottom:0; right:20%; }
+
+.fade{ opacity:0.3; }
+
+/* Text */
+#text{
+  min-height:200px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Floating Names -->
+<script>
+for(let i=0;i<18;i++){
+  const f=document.createElement("div");
+  f.className="floating";
+  f.innerText="HETSI";
+  f.style.left=Math.random()*100+"vw";
+  f.style.fontSize=(20+Math.random()*50)+"px";
+  f.style.animationDuration=(20+Math.random()*20)+"s";
+  document.body.appendChild(f);
+}
+</script>
+
+<div class="card">
+  <div id="text"></div>
+  <div id="buttons"></div>
+  <div id="bigHeart" class="big-heart" style="display:none;">🤍</div>
+
+  <div class="heart-wrapper" id="heartWrapper">
+    <div class="heart h1" onclick="openHeart(0)"><span>H</span></div>
+    <div class="heart h2" onclick="openHeart(1)"><span>E</span></div>
+    <div class="heart h3" onclick="openHeart(2)"><span>T</span></div>
+    <div class="heart h4" onclick="openHeart(3)"><span>S</span></div>
+    <div class="heart h5" onclick="openHeart(4)"><span>I</span></div>
+  </div>
+</div>
+
+<script>
+const textEl=document.getElementById("text");
+const buttons=document.getElementById("buttons");
+const bigHeart=document.getElementById("bigHeart");
+const heartWrapper=document.getElementById("heartWrapper");
+
+let step=0;
+
+const subjects=[
+`Mathematics says two negatives make a positive…
+But even my worst day becomes positive when you smile.`,
+
+`Biology explains the heartbeat…
+But it never explained why mine races when I see you.`,
+
+`Biology says white blood cells heal wounds…
+But your smile heals me.`,
+
+`Light travels faster than sound…
+But your voice reaches my heart faster than anything.`,
+
+`Oxygen keeps me alive…
+But your happiness keeps me going.`,
+
+`Stars shine brightest at night…
+But you shine even in my darkest days.`,
+
+`If peace had a voice…
+It would sound like yours.`
+];
+
+const shayari=[
+`Teri aankhon mein sirf khoobsurti nahi,
+ek gehra sukoon basa hai.
+Jab bhi unmein dekhta hoon,
+lagta hai duniya ruk gayi hai
+aur bas tu hi reh gayi hai.
+Shayad isi liye har baar
+main khud ko wahi kho deta hoon.`,
+
+`Teri muskaan ek aadat si ban gayi hai,
+bina wajah bhi khushi de jaati hai.
+Ek halka sa smile tera,
+aur mere saare bojh halke ho jaate hain.
+Log kehte hain waqt sab theek karta hai,
+par kabhi kabhi tera smile usse tez kaam karta hai.`,
+
+`Jab tere baal hawa se khelte hain,
+toh lagta hai waqt bhi dheere chalne lagta hai.
+Har ek lahar mein ek narmi hai,
+ek ada hai,
+jo bas tujhme hi hai.
+Aur us pal mein,
+main sirf dekhte reh jaana chahta hoon.`,
+
+`Tera dil sabse alag hai.
+Itna narm, itna saaf,
+ke khud se zyada dusron ki parwah karta hai.
+Jo chhoti si baat pe bhi sochta hai
+ke saamne wala hurt na ho.
+Aise dil rare hote hain…
+aur tu waise hi rare hai.`,
+
+`Pyaar shor se nahi hota,
+kabhi kabhi woh chup rehkar bhi sab keh deta hai.
+Jo main mehsoos karta hoon,
+woh lafzon se bada hai.
+Shayad perfect nahi hoon main,
+par jo ehsaas hai,
+woh sach hai…
+aur sirf tere liye hai.`
+];
+
+function typeWriter(text,cb){
+  textEl.innerHTML="";
+  let i=0;
+  function typing(){
+    if(i<text.length){
+      textEl.innerHTML+=text.charAt(i)==="\n"?"<br>":text.charAt(i);
+      i++;
+      setTimeout(typing,22);
+    } else if(cb){ cb(); }
+  }
+  typing();
+}
+
+function start(){
+  typeWriter("Dear Hetsi…\nAre you ready for today’s surprise?",()=>{
+    buttons.innerHTML=`<button onclick="yes()">Yes</button>
+                       <button onclick="no()">No</button>`;
+  });
+}
+
+function no(){
+  typeWriter("No?\nThat’s not an option today.\nPlease choose Yes.",()=>{
+    buttons.innerHTML=`<button onclick="yes()">Yes</button>`;
+  });
+}
+
+function yes(){
+  buttons.innerHTML="";
+  showSubject();
+}
+
+function showSubject(){
+  if(step<subjects.length){
+    typeWriter(subjects[step],()=>{
+      buttons.innerHTML=`<button onclick="next()">Next</button>`;
+    });
+  } else {
+    typeWriter("But maybe… science can only explain so much.\nNow… I will try to describe your beauty in some words.",()=>{
+      buttons.innerHTML=`<button onclick="showHeart()">Of course</button>`;
+    });
+  }
+}
+
+function next(){
+  step++;
+  buttons.innerHTML="";
+  showSubject();
+}
+
+function showHeart(){
+  textEl.innerHTML="";
+  buttons.innerHTML="";
+  bigHeart.style.display="block";
+}
+
+bigHeart.onclick=function(){
+  bigHeart.style.display="none";
+  heartWrapper.style.display="block";
+};
+
+function openHeart(index){
+  const hearts=document.querySelectorAll(".heart");
+  hearts.forEach((h,i)=>{
+    if(i!==index) h.classList.add("fade");
+    else h.style.transform="scale(1.4) rotate(-45deg)";
+  });
+
+  typeWriter(shayari[index],()=>{
+    buttons.innerHTML=`<button onclick="resetHearts()">Back</button>`;
+  });
+}
+
+function resetHearts(){
+  const hearts=document.querySelectorAll(".heart");
+  hearts.forEach(h=>{
+    h.classList.remove("fade");
+    h.style.transform="rotate(-45deg)";
+  });
+  textEl.innerHTML="";
+  buttons.innerHTML="";
+}
+
+start();
+</script>
+
+</body>
+</html>
